@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Колледж</title>
+     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        body {
+            background: #E5E8EC;
+            color: #000;
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding-top: 50px;
+	    font-weight: normal;
+        }
+
+        /* Верхняя панель */
+        .top-bar {
+            font-size: 16px;
+            font-weight: normal;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+	    gap: 20px;
+            
+        }
+
+        /* Горизонтальное меню */
+        .menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+	    font-weight: normal;
+        }
+
+        .menu li {
+            cursor: pointer;
+            font-weight: bold;
+            position: relative;
+            padding: 10px 20px;
+        }
+
+        .menu li.active {
+            color: red;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .menu li a:hover {
+            text-decoration: none;
+        }
+
+        /* Специальности красного цвета */
+        .menu li.specialty {
+            color: red;
+        }
+
+        /* Выпадающее меню */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: red;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 10px 0;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+	    font-weight: normal;
+        }
+
+        .submenu a:hover {
+            background: darkred;
+        }
+
+        .menu li:hover .submenu {
+            display: block;
+        }
+
+        /* Приветствие на главной */
+        .greeting {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: red;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            font-weight: normal;
+        }
+
+        .menu li.main:hover .greeting {
+            display: block;
+        }
+
+        /* Контейнер для блоков */
+        .content-container {
+            width: 100%;
+            padding: 20px;
+            background: white;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin: 100px 0 50px 0;
+        }
+
+        /* Соцсети */
+       .social-icons {
+    display: flex; /* Делаем иконки соцсетей в ряд */
+    gap: 15px; /* Добавляем отступы между иконками */
+}
+
+        .social-icons a {
+            color: black;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: red;
+        }
+
+        /* Выбор языка */
+        .language-select {
+            margin-left: auto;
+            padding-right: 20px;
+        }
+	.swiper-container {
+    width: 100%;
+    height: 600px;
+    padding-bottom: 50px;
+    overflow: hidden; /* Убираем лишний скролл */
+}
+
+.swiper-wrapper {
+    display: flex;
+    flex-direction: row; /* Принудительно горизонтальный ряд */
+    align-items: center;
+}
+
+.swiper-slide {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 500px;
+    transform-origin: bottom center;
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s, height 0.3s;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    display: block;
+    object-fit: cover;
+}
+
+.slide-text {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+    width: 90%;
+}
+.language-select {
+    margin-right: auto;
+   
+}
+    </style>
+</head>
+<body>
+
+   <div class="top-bar">
+    
+
+    <!-- Меню -->
+    <ul class="menu">
+        <li class="main">Главная
+            <div class="submenu">
+                <a href="#">История колледжа</a>
+                <a href="#">Лицензии и аккредитации</a>
+                <a href="#">Наша команда</a>
+                <a href="#">Учебно-воспитательный процесс</a>
+                <a href="#">Мероприятия</a>
+                <a href="#">Библиотека</a>
+                <a href="#">Нормативные документы</a>
+                <a href="#">Индустриальный совет</a>
+                <a href="#">Профсоюз колледжа</a>
+                <a href="#">Попечительный совет</a>
+                <a href="#">Блог директора</a>
+                <a href="#">Отчеты о деятельности колледжа</a>
+                <a href="#">Методическая служба</a>
+                <a href="#">Психологическая служба</a>
+                <a href="#">Проекты</a>
+                <a href="#">Учебно-производственный процесс</a>
+                <a href="#">Вакантные места</a>
+            </div>
+        </li>
+        <li>Абитуриенту
+            <div class="submenu">
+                <a href="#">Как подать заявку?</a>
+                <a href="#">Необходимые документы</a>
+                <a href="#">Типовые правила приема</a>
+                <a href="#">Общежитие</a>
+            </div>
+        </li>
+        <li>Студенту
+            <div class="submenu">
+                <a href="#">Правила внутреннего распорядка</a>
+                <a href="#">Вакантные места по госгранту</a>
+                <a href="#">Студенческие клубы</a>
+                <a href="#">Карьера и трудоустройство</a>
+                <a href="#">Перевод и восстановление</a>
+                <a href="#">Онлайн кабинет психолога</a>
+                <a href="#">Достижения студентов</a>
+                <a href="#">Коворкинг</a>
+            </div>
+        </li>
+        <li class="specialty"><a href="#">Специальности</a></li>
+        <li><a href="#">Новости</a></li>
+        <li><a href="#">Контакты</a></li>
+    </ul>
+
+    <!-- Соцсети справа -->
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+
+       
+    
+    </div>
+
+    <!-- Блок "Специальности" -->
+<div class="content-container">
+    <h2>Специальности</h2>
+
+    <div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <a href="шаблоны/Программист.html">
+                <img src="п.webp" alt="Разработчик программного обеспечения">
+                <div class="slide-text">Разработчик программного обеспечения</div>
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a href="шаблоны/Электрик.html">
+                <img src="е.webp" alt="Электрик">
+                <div class="slide-text">Электрик</div>
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a href="шаблоны/Шиное.html">
+                <img src="ш.webp" alt="Шиное производство">
+                <div class="slide-text">Шиное производство</div>
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a href="шаблоны/Бухгалтер.html">
+                <img src="б.webp" alt="Бухгалтер">
+                <div class="slide-text">Бухгалтер</div>
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a href="шаблоны/Механик.html">
+                <img src="м.webp" alt="Механик">
+                <div class="slide-text">Механик</div>
+            </a>
+        </div>
+    </div>
+</div>
+  
+
+<!-- Подключение Swiper -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper(".swiper-container", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            spaceBetween: 50,
+            loop: true,
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: false,
+            },
+        });
+
+        let isSmall = false;
+
+        function toggleSize() {
+            document.querySelectorAll(".swiper-slide").forEach(slide => {
+                if (isSmall) {
+                    slide.style.width = "400px";
+                    slide.style.height = "500px";
+                } else {
+                    slide.style.width = "200px";
+                    slide.style.height = "320px";
+                }
+            });
+            isSmall = !isSmall;
+        }
+    </script>
+
+
+</body>
+</html>
