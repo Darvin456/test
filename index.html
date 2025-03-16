@@ -2,12 +2,14 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Колледж</title>
      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
+	/* Бургер-иконка */
+
         body {
             background: #E5E8EC;
             color: #000;
@@ -35,22 +37,49 @@
 	    gap: 20px;
             
         }
-
+	.overlay-text {
+    position: absolute;
+    top: 50%; /* Разместить текст по центру */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5); /* Затемнённый фон */
+    color: white; /* Белый текст */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: center;
+    width: 80%;
+    font-weight: bold;
+}
         /* Горизонтальное меню */
         .menu {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-	    font-weight: normal;
-        }
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+    overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+    white-space: nowrap; /* Запрещаем перенос элементов */
+    scrollbar-width: thin; /* Для Firefox */
+    scrollbar-color: #ccc transparent; /* Цвет полосы прокрутки */
+}
+
+/* Стилизация скроллбара для Chrome/Edge */
+.menu::-webkit-scrollbar {
+    height: 6px;
+}
+
+.menu::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
 
         .menu li {
             cursor: pointer;
             font-weight: bold;
             position: relative;
-            padding: 10px 20px;
+            padding: 10px 10px;
         }
 
         .menu li.active {
@@ -169,12 +198,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 500px;
+    width: 200px;
+    height: 250px;
     transform-origin: bottom center;
     transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s, height 0.3s;
 }
-
+.slide-text-top {
+    position: absolute;
+    top: -50px; /* Новый стиль для верхнего текста */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+    width: 90%;
+}
 .swiper-slide img {
     width: 100%;
     height: 100%;
@@ -189,7 +230,7 @@
     bottom: -50px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(117, 117, 117, 1);
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
@@ -275,33 +316,43 @@
     <div class="swiper-container">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <a href="Программист.html">
+            <a href="шаблоны/Программист.html">
                 <img src="п.webp" alt="Разработчик программного обеспечения">
-                <div class="slide-text">Разработчик программного обеспечения</div>
+		<div class="overlay-text">Разработчик ПО</div>
+                <div class="slide-text">Цитата</div>
+		<div class="slide-text-top">Название студента</div>
             </a>
         </div>
         <div class="swiper-slide">
-            <a href="Электрик.html">
+            <a href="шаблоны/Электрик.html">
                 <img src="е.webp" alt="Электрик">
-                <div class="slide-text">Электрик</div>
+                <div class="overlay-text">Техник-Электромеханик</div>
+                <div class="slide-text">Цитата</div>
+		<div class="slide-text-top">Название студента</div>
             </a>
         </div>
         <div class="swiper-slide">
-            <a href="Шиное.html">
+            <a href="шаблоны/Шиное.html">
                 <img src="ш.webp" alt="Шиное производство">
-                <div class="slide-text">Шиное производство</div>
+                <div class="overlay-text">Техник-технолог Производство шин</div>
+                <div class="slide-text">Цитата</div>
+		<div class="slide-text-top">Название студента</div>
             </a>
         </div>
         <div class="swiper-slide">
-            <a href="Бухгалтер.html">
+            <a href="шаблоны/Бухгалтер.html">
                 <img src="б.webp" alt="Бухгалтер">
-                <div class="slide-text">Бухгалтер</div>
+               <div class="overlay-text">Бухгалтер</div>
+                <div class="slide-text">Цитата</div>
+		<div class="slide-text-top">Название студента</div>
             </a>
         </div>
         <div class="swiper-slide">
-            <a href="Механик.html">
-                <img src="м.webp" alt="Механик">
-                <div class="slide-text">Механик</div>
+            <a href="шаблоны/Механик.html">
+                <img src="м.webp" alt="Техник-механик">
+                <div class="overlay-text">Техник-электромеханик</div>
+                <div class="slide-text">Цитата</div>
+		<div class="slide-text-top">Название студента</div>
             </a>
         </div>
     </div>
@@ -341,6 +392,25 @@
             });
             isSmall = !isSmall;
         }
+function adaptLayout() {
+        let isMobile = window.innerWidth <= 768; // Если ширина экрана ≤ 768px, считаем мобильным устройством
+        let slides = document.querySelectorAll(".swiper-slide");
+
+        slides.forEach(slide => {
+            if (isMobile) {
+                slide.style.width = "200px";
+                slide.style.height = "250px";
+            } else {
+                slide.style.width = "400px";
+                slide.style.height = "500px";
+            }
+        });
+
+        document.body.style.fontSize = isMobile ? "14px" : "16px";
+    }
+
+    window.onload = adaptLayout;
+    window.onresize = adaptLayout; // Пересчет при изменении размеров экрана
     </script>
 
 
